@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { createStage, checkCollision } from '../gameHelpers';
 // styled components
 import { StyledTetrisWrapper, StyledTetris } from './Styles/StyledTetris';
+import { StyledRotateButton } from './Styles/StyledRotateButton';
 
 //custom hooks
 import { useInterval } from '../hooks/useInterval';
@@ -14,7 +15,9 @@ import { useGameStatus } from '../hooks/useGameStatus';
 import Stage from './Stage';
 import Display from './Display';
 import StartButton from './StartButton';
-
+import RotateButton from './RotateButton';
+import MoveRightButton from './MoveRightButton'
+import MoveLeftButton from './MoveLeftButton'
 const Tetris = () => {
     const [dropTime, setDropTime] = useState(null);
     const [gameOver, setGameOver] = useState(false);
@@ -87,7 +90,17 @@ const Tetris = () => {
         }
       }
     }
-  
+
+    const rotate = ({ onClick }) => {
+      playerRotate(stage, 1);
+    }
+    const left = ({ onClick }) => {
+      movePlayer(-1);
+    }
+    const right = ({ onClick }) => {
+      movePlayer(1);
+    }
+
     useInterval(() => {
         drop();
     }, dropTime)
@@ -107,6 +120,9 @@ const Tetris = () => {
               </div>
             )}
             <StartButton callback={startGame} />
+            <RotateButton callback={rotate}/>
+            <MoveLeftButton callback={left}/>
+            <MoveRightButton callback={right}/>
           </aside>
         </StyledTetris>
       </StyledTetrisWrapper>
