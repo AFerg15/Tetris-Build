@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createStage, checkCollision } from '../gameHelpers';
 // styled components
-import { StyledTetrisWrapper, StyledTetris } from './Styles/StyledTetris';
+import { StyledTetrisWrapper, StyledTetris, Aside } from './Styles/StyledTetris';
 import { StyledRotateButton } from './Styles/StyledRotateButton';
 
 //custom hooks
@@ -110,6 +110,7 @@ const Tetris = () => {
         <StyledTetris>
           <Stage stage={stage} />
           <aside>
+
             {gameOver ? (
               <Display gameOver={gameOver} text="Game Over" />
             ) : (
@@ -120,10 +121,12 @@ const Tetris = () => {
               </div>
             )}
             <StartButton callback={startGame} />
+            <br></br>
             <RotateButton callback={rotate}/>
+            <br></br>
             <MoveLeftButton callback={left}/>
             <MoveRightButton callback={right}/>
-          </aside>
+          </ aside>
         </StyledTetris>
       </StyledTetrisWrapper>
     );
